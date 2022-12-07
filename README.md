@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+---STEPS AND FEATURES USED---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+There are two panes in this code editor- One where the code is run (upper half of the app that contains the three code containers) and the other where the output is displayed (lower half ‘result’ code window).
 
-## Available Scripts
+Created a custom component called Editor which will be used in taking input of HTML, CSS, JS code snippets in their respective code containers.
 
-In the project directory, you can run:
+To render a web page within another web page an iframe element is used.
 
-### `npm start`
+Used codemirror package for this component so that we can have controlled usage for the code editor which will then help in controlling input/output values and event handlers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Buttons for each code container for opening (expanding) and closing (collapsing) individual code-editors and also a button to clear the input.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Made a ‘source’ document in the main App function in `app.js` that needs to be used inside the `iframe` element to render the website. To render any website a HTML code is sufficient with all of HTML, CSS, JS codes wrapped properly in it. So, created a variable such that it understands language specific inputs and accordingly creates a HTML page with the relevant source code of each language wrapped in its tag (like <body> for HTML) .
 
-### `npm test`
+On using this ‘source document’ variable in the `iframe` as one of its arguments we will be able to render pages.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Further setted a time-delay between code input and output (to avoid data execution cluttering when your site is hosted).
 
-### `npm run build`
+Created state variables (preferably by using useState hook) in the main app code to pass in values and event handler values, for individual editor components (i.e. language specific) and other relevant features.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The logic of implementing `source document` variable: The tag that binds HTML code is `<body>...</body>`, tag that binds CSS is `<style>...</style>` and for JS is `<script>...</script>`. Using a template string, the contents of each of tags can be input as variables/expressions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For time-delay we use useEffect react component.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To implement the main feature of this task, we create a custom useLocalStorage hook in `useLocalStorage.js` file.
 
-### `npm run eject`
+This hook will ideally take two parameters-namely a key and an initialValue. The key will be pointing towards the language pane.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Using this key, extract the JSON value (via useState function) and check if it’s null or contains some value. If null, JSON needs to be returned (after parsing it obviously).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then Check if the initialValue is of type function or not. Accordingly return the initialValue.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Also we use the `useEffect` hook to make sure that when the value (associated with useState hook) or the key value changes, the key is set as the stringified version of value (JSON).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Finally we use this hook in the main App function of `app.js`in place of previously used useState of all language-specific useState’s defined before.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Now we install fortawesome/fontawesome (for react) after selecting appropriate icons from the font awesome site to plug-in all relevant icons to complete our code-editor.

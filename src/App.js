@@ -23,6 +23,18 @@ function App() {
 
   return (
     <>
+      <div>
+        <button
+          onClick={() => {
+            setHtml("");
+            setCss("");
+            setJs("");
+          }}
+          className="btn-clr"
+        >
+          Clear
+        </button>
+      </div>
       <div className="pane top-pane">
         <Editor
           language="xml"

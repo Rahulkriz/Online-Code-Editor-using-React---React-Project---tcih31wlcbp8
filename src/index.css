@@ -53,3 +53,14 @@ body {
   cursor: pointer;
 }
 
+.btn-clr{
+  height: 50px;
+  width: 50px;
+  border: 10px;
+  margin-left: 95%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+
+}
+
