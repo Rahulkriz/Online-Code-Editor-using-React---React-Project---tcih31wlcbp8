@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const PREFIX = "codepen-clone";
+const PREFIX = "codepen-clone ";
 
 function useLocalStorage(key, initialValue) {
   const prefixedKey = PREFIX + key;
@@ -8,11 +8,7 @@ function useLocalStorage(key, initialValue) {
     const JsonValue = localStorage.getItem(prefixedKey);
     if (JsonValue != null) return JSON.parse(JsonValue);
 
-    if (typeof initialValue == "function") {
-      return initialValue();
-    } else {
-      return initialValue;
-    }
+    return initialValue;
   });
 
   useEffect(() => {
